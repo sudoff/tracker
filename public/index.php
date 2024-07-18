@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 
 use Tracker\Log\Logger;
@@ -15,7 +17,7 @@ if (file_exists($autoload)) {
     }
 
     if (DEV_MODE) {
-        $whoops = new Run;
+        $whoops = new Run();
         $whoops->pushHandler(new PrettyPageHandler());
         $whoops->register();
     } else {

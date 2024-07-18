@@ -1,8 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tracker\Traits;
 
-trait StaticOnlyTrait {
+trait StaticOnlyTrait
+{
     /**
      * Prevent creating a new instance of the class.
      */

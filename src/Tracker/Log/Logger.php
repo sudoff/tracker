@@ -1,9 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tracker\Log;
 
 use Monolog\Logger as MonologLogger;
 use Monolog\Handler\StreamHandler;
+
 use const Tracker\CRITICAL_LOG_FILE;
 
 class Logger
