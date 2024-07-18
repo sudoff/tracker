@@ -11,3 +11,4 @@ phpunit.phar
 /hs_err_pid13156.log
 /node_modules/
 /config/config.routes.php
+/.php-cs-fixer.cache
