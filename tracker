@@ -3,8 +3,6 @@
 
 namespace Tracker {
 
-
-    require_once __DIR__ . '/constants.php';
     require_once __DIR__ . '/functions.php';
 
     function displayMenu(): void
@@ -24,11 +22,14 @@ namespace Tracker {
 
     /**
      * @param string $script
-     * @param array<string, array<int, mixed>|string|false> $arguments
+     * @param array<string, mixed> $arguments
      * @return int
      */
     function runComposerScript(string $script, array $arguments = []): int
     {
+
+        alert($arguments);
+
         if (!empty($arguments)) {
             setRemoteConfig($arguments);
         }
@@ -62,7 +63,7 @@ namespace Tracker {
         return $code;
     }
 
-    list($actions, $arguments) = parseArguments();
+    [$actions, $arguments] = parseArguments();
 
     if ($actions['install-dev']) {
         exit(runComposerScript("install-dev", $arguments));

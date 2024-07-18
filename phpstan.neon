@@ -11,8 +11,6 @@ parameters:
     paths:
         - src
         - constants.php
-        - functions.php
-        - tracker
         - phpstan.php
         - scripts/install.php
         - scripts/reinstall.php

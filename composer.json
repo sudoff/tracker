@@ -8,10 +8,9 @@
   },
   "autoload": {
     "psr-4": {
-      "Tracker\\": "src/Tracker"
+      "Tracker\\": "src/Tracker/"
     },
     "files": [
-      "constants.php",
       "functions.php"
     ]
   },
