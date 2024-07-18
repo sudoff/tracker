@@ -7,7 +7,7 @@ use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RuntimeException;
-use Tracker\Tracker\EnvManager;
+use SplFileInfo;
 
 function writeFile(string $filename, string $content, int $flag = 0): bool
 {
@@ -60,6 +60,7 @@ function removeDirectory(string $dir): void
         $iterator = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST);
 
+        /** @var SplFileInfo $file */
         foreach ($files as $file) {
             if ($file->isDir()) {
                 rmdir($file->getRealPath());
@@ -117,10 +118,10 @@ function createDirectories(): void
 }
 
 /**
- * @param array<string, string> $arguments
+ * @param array<string, int|float|string> $arguments
  * @return void
  */
-function setRemoteConfig(array $arguments = []): void
+function setRemoteConfig(array $arguments): void
 {
     if (empty($arguments)) {
         divider("Empty remote configuration, use default values");
@@ -136,7 +137,7 @@ function setRemoteConfig(array $arguments = []): void
     }
 }
 
-function configureRemote()
+function configureRemote(): void
 {
     $envFile = ENV_FILE;
     if (!isFileAvailable($envFile)) {
@@ -144,7 +145,7 @@ function configureRemote()
 
         $setupOptions = [
             CONFIG_SECTION_REMOTE_HOST => 'localhost',
-            CONFIG_SECTION_REMOTE_PORT => 1088,
+            CONFIG_SECTION_REMOTE_PORT => '1088',
         ];
 
         setRemoteConfig($setupOptions);
@@ -170,6 +171,9 @@ function reInstall(): void
     removeFile(ENV_FILE);
 }
 
+/**
+ * @return array{array{install-dev: bool, install-prod: bool}, array{Tracker_REMOTE_HOST: list<mixed>|string|false, Tracker_REMOTE_PORT: list<mixed>|string|false}}
+ */
 function parseArguments(): array
 {
     $options = getopt("s:h:u:p:d", [

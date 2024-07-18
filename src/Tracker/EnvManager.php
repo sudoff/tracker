@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Tracker\Tracker;
+namespace Tracker;
 
 use RuntimeException;
 
@@ -64,7 +64,7 @@ class EnvManager
      * Update the .env file with the provided setup variables and definitions.
      *
      * @param string $envFile
-     * @param array<string, int|float|string> $setupVariables
+     * @param array<string, float|int|string> $setupVariables
      * @param array<string, array<string, int|float|string>> $definition
      * @return void
      */

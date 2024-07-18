@@ -10,10 +10,9 @@ parameters:
         - src/Gasper/Database/DatabaseConfig.php
     paths:
         - src
-        - database
-        - config.php
         - constants.php
         - functions.php
+        - tracker
         - phpstan.php
         - scripts/install.php
         - scripts/reinstall.php
