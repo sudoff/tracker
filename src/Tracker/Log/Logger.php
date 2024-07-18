@@ -11,7 +11,7 @@ use const Tracker\CRITICAL_LOG_FILE;
 
 class Logger
 {
-    private static MonologLogger $logger;
+    private static ?MonologLogger $logger = null;
 
     public static function getLogger(): MonologLogger
     {
