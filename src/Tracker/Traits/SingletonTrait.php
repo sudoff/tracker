@@ -25,6 +25,7 @@ trait SingletonTrait
             static::$instance[$class] = new static();
             static::$instance[$class]->traitSingletonInit();
         }
+
         return static::$instance[$class];
     }
 
@@ -47,7 +48,7 @@ trait SingletonTrait
      */
     final protected function __wakeup()
     {
-        throw new SingletonException("You can not deserialize a singleton");
+        throw new SingletonException('You can not deserialize a singleton');
     }
 
     /**
@@ -56,7 +57,7 @@ trait SingletonTrait
      */
     final protected function __sleep()
     {
-        throw new SingletonException("You can not serialize a singleton");
+        throw new SingletonException('You can not serialize a singleton');
     }
 
     /**
@@ -65,6 +66,6 @@ trait SingletonTrait
      */
     final protected function __clone()
     {
-        throw new SingletonException("You can not clone a singleton");
+        throw new SingletonException('You can not clone a singleton');
     }
 }

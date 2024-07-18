@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tracker\Traits;
 
-use Tracker\Exceptions\SingletonException;
 use Throwable;
+use Tracker\Exceptions\SingletonException;
 
 trait SingletonConstructorTrait
 {
@@ -23,18 +23,17 @@ trait SingletonConstructorTrait
      * @return self The singleton instance.
      * @throws SingletonException|Throwable If called with arguments after the initial creation.
      */
-
     final public static function getInstance(...$args): self
     {
         static $instance = null;
         if ($instance === null) {
             $instance = new static(...$args);
         } elseif (!empty($args)) {
-            throw new SingletonException("An instance of this Singleton has already been created with different parameters.");
+            throw new SingletonException('An instance of this Singleton has already been created with different parameters.');
         }
+
         return $instance;
     }
-
 
     /**
      * Constructor for the singleton instance.
@@ -60,7 +59,7 @@ trait SingletonConstructorTrait
      */
     final protected function __wakeup()
     {
-        throw new SingletonException("You can not deserialize a singleton");
+        throw new SingletonException('You can not deserialize a singleton');
     }
 
     /**
@@ -69,7 +68,7 @@ trait SingletonConstructorTrait
      */
     final protected function __sleep()
     {
-        throw new SingletonException("You can not serialize a singleton");
+        throw new SingletonException('You can not serialize a singleton');
     }
 
     /**
@@ -78,6 +77,6 @@ trait SingletonConstructorTrait
      */
     final protected function __clone()
     {
-        throw new SingletonException("You can not clone a singleton");
+        throw new SingletonException('You can not clone a singleton');
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tracker\Log;
 
-use Monolog\Logger as MonologLogger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger as MonologLogger;
 
 use const Tracker\CRITICAL_LOG_FILE;
 

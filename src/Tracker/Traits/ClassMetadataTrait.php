@@ -26,7 +26,7 @@ trait ClassMetadataTrait
      */
     public function getShortClassName(): string
     {
-        return substr(strrchr('\\' . static::class, '\\') ?: "", 1);
+        return substr(strrchr('\\' . static::class, '\\') ?: '', 1);
     }
 
     /**
@@ -44,7 +44,7 @@ trait ClassMetadataTrait
      *
      * @return string A unique hash representing the object instance.
      */
-    public function getObjectHash(string $algorithm = "md5"): string
+    public function getObjectHash(string $algorithm = 'md5'): string
     {
         throw new RuntimeException("Unsupported method call. Override method {$this->getClassName()}::getObjectHash to use");
     }
@@ -56,7 +56,7 @@ trait ClassMetadataTrait
      *
      * @return string A unique hash representing the class definition.
      */
-    public function getClassDefinitionHash(string $algorithm = "md5"): string
+    public function getClassDefinitionHash(string $algorithm = 'md5'): string
     {
         return hash($algorithm, $this->getClassName());
     }

@@ -36,8 +36,8 @@ class EnvManager
         foreach ($envContent as $line) {
             if (strpos($line, '=') !== false) {
                 [$key, $value] = explode('=', $line, 2);
-                $envKey = trim($key);
-                if ($envKey[0] !== "#") {
+                $envKey        = trim($key);
+                if ($envKey[0] !== '#') {
                     $envData[$envKey] = trim($value);
                 }
             }
@@ -59,6 +59,7 @@ class EnvManager
         foreach ($envData as $key => $value) {
             $newEnvContent[] = "$key=$value";
         }
+
         return file_put_contents($filePath, implode(PHP_EOL, $newEnvContent)) !== false;
     }
 
@@ -73,7 +74,7 @@ class EnvManager
     public static function setup(string $envFile, array $setupVariables = [], array $definition = []): void
     {
         if (empty($setupVariables)) {
-            throw new RuntimeException("Empty setup data.");
+            throw new RuntimeException('Empty setup data.');
         }
 
         if (!static::isFileAccessible($envFile)) {

@@ -16,7 +16,7 @@ trait ImmutableTrait
      */
     public function __set(string $name, $value)
     {
-        throw new Exception("Cannot modify immutable object");
+        throw new Exception('Cannot modify immutable object');
     }
 
     /**
@@ -26,6 +26,6 @@ trait ImmutableTrait
      */
     public function __get(string $name)
     {
-        throw new Exception("Cannot directly access object property");
+        throw new Exception('Cannot directly access object property');
     }
 }

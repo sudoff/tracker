@@ -8,10 +8,10 @@ require_once __DIR__ . '/..' . '/constants.php';
 require_once __DIR__ . '/..' . '/functions.php';
 
 line();
-divider("*** Starting uninstall ***");
+divider('*** Starting uninstall ***');
 
 reInstall();
 removeDirectory(VENDOR_PATH);
 
-divider("*** Completed uninstall ***");
+divider('*** Completed uninstall ***');
 line();
