@@ -1,0 +1,83 @@
+{
+  "name": "sudoff/tracker",
+  "minimum-stability": "stable",
+  "require": {
+    "guzzlehttp/guzzle": "^7.8",
+    "jaybizzle/crawler-detect": "^1.2",
+    "respect/validation": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tracker\\": "src/Tracker"
+    }
+  },
+  "files": [
+    "constants.php",
+    "functions.php"
+  ],
+  "config": {
+    "process-timeout": 1800,
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "platform-check": true,
+    "fxp-asset": {
+      "enabled": false
+    },
+    "allow-plugins": {
+      "kylekatarnls/update-helper": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "prefer-stable": true,
+  "license": "proprietary",
+  "require-dev": {
+    "filp/whoops": "^2.15",
+    "kint-php/kint": "^5.1",
+    "phpstan/extension-installer": "^1.3",
+    "phpstan/phpstan": "^1.10",
+    "phpstan/phpstan-deprecation-rules": "^1.1",
+    "roave/security-advisories": "dev-master"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@post-install"
+    ],
+    "install-dev": [
+      "@composer-dev",
+      "php phpstan.php"
+    ],
+    "reinstall-dev": [
+      "php scripts/reinstall.php",
+      "@composer-dev",
+      "php phpstan.php"
+    ],
+    "install-prod": [
+      "@composer-prod"
+    ],
+    "reinstall-prod": [
+      "php scripts/reinstall.php",
+      "@composer-prod"
+    ],
+    "deinstall-all": [
+      "php scripts/deinstall.php"
+    ],
+    "composer-dev": [
+      "composer install"
+    ],
+    "composer-prod": [
+      "composer install --no-dev"
+    ],
+    "post-install": [
+      "php scripts/install.php",
+      "composer dump-autoload --optimize"
+    ]
+  },
+  "extra": {
+  }
+}

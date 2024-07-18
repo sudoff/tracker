@@ -1,0 +1,103 @@
+#!/usr/bin/env php
+<?php
+
+namespace Tracker {
+
+
+    require_once __DIR__ . '/constants.php';
+    require_once __DIR__ . '/functions.php';
+
+    function displayMenu(): void
+    {
+        echo "\nSelect an option:\n";
+        echo "====================================\n";
+        echo "1. Install (development)\n";
+        echo "2. Reinstall (development)\n";
+        echo "3. Install (production)\n";
+        echo "4. Reinstall (production)\n";
+        echo "5. Uninstall\n";
+        echo "*** ==================== ***\n";
+        echo "6. Exit\n";
+        echo "====================================\n";
+        echo "Enter the option number: ";
+    }
+
+    /**
+     * @param string $script
+     * @param array<string, array<int, mixed>|string|false> $arguments
+     * @return int
+     */
+    function runComposerScript(string $script, array $arguments = []): int
+    {
+        if (!empty($arguments)) {
+            setRemoteConfig($arguments);
+        }
+
+        [$name, $mode] = explode("-", $script);
+
+        $detail = "";
+        switch ($mode) {
+            case "dev":
+                $detail = " (development)";
+                break;
+            case "prod":
+                $detail = " (production)";
+                break;
+            case "all":
+                $detail = " (all)";
+                break;
+        }
+
+        $code = 0;
+        divider("Starting {$name}{$detail}...");
+        exec("composer run-script $script", $output, $return_var);
+        echo implode("\n", $output) . "\n";
+        if ($return_var !== 0) {
+            divider("Error during installation {$script}{$detail}.");
+            $code = 1;
+        } else {
+            $name = ucfirst($name);
+            divider("{$name}{$detail} completed.");
+        }
+        return $code;
+    }
+
+    list($actions, $arguments) = parseArguments();
+
+    if ($actions['install-dev']) {
+        exit(runComposerScript("install-dev", $arguments));
+    }
+
+    if ($actions['install-prod']) {
+        exit(runComposerScript("install-prod", $arguments));
+    }
+
+    while (true) {
+        displayMenu();
+        $option = trim(fgets(STDIN));
+
+        switch ($option) {
+            case '1':
+                runComposerScript("install-dev", $arguments);
+                break;
+            case '2':
+                runComposerScript("reinstall-dev", $arguments);
+                break;
+            case '3':
+                runComposerScript("install-prod", $arguments);
+                break;
+            case '4':
+                runComposerScript("reinstall-prod", $arguments);
+                break;
+            case '5':
+                runComposerScript("deinstall-all", []);
+                break;
+            case '6':
+                echo "Exiting...\n";
+                exit(0);
+            default:
+                echo "Invalid option. Please select again.\n";
+                break;
+        }
+    }
+}

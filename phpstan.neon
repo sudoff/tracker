@@ -1,0 +1,20 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    level: 8
+    tmpDir: runtime/tmp
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+    excludePaths:
+        - src/Gasper/Database/DatabaseConfig.php
+    paths:
+        - src
+        - database
+        - config.php
+        - constants.php
+        - functions.php
+        - phpstan.php
+        - scripts/install.php
+        - scripts/reinstall.php
+        - scripts/deinstall.php
