@@ -137,15 +137,23 @@ namespace Tracker {
         }
     }
 
+    /**
+     * @return void
+     */
     function configureRemote(): void
     {
-        $envFile = ENV_FILE;
-        if (isFileAvailable($envFile)) {
-            divider("Configuring remote settings...");
-            setRemoteConfig([
-                CONFIG_SECTION_REMOTE_HOST => 'localhost',
-                CONFIG_SECTION_REMOTE_PORT => 1088,
-            ]);
+        if (isFileAvailable(ENV_FILE)) {
+
+            try {
+                $envFile = ENV_FILE;
+                EnvManager::setup(ENV_FILE, [
+                    CONFIG_SECTION_REMOTE_HOST => 'localhost',
+                    CONFIG_SECTION_REMOTE_PORT => 1088,
+                ]);
+                divider("{$envFile} file updated successfully.");
+            } catch (RuntimeException $e) {
+                exitWithError($e->getMessage());
+            }
         }
     }
 

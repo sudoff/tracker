@@ -64,8 +64,8 @@ class EnvManager
      * Update the .env file with the provided setup variables and definitions.
      *
      * @param string $envFile
-     * @param array<string, float|int|string> $setupVariables
-     * @param array<string, array<string, int|float|string>> $definition
+     * @param array<string, numeric|string> $setupVariables
+     * @param array<string, array<string, numeric|string>> $definition
      * @return void
      */
     public static function setup(string $envFile, array $setupVariables = [], array $definition = []): void

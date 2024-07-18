@@ -9,12 +9,12 @@
   "autoload": {
     "psr-4": {
       "Tracker\\": "src/Tracker"
-    }
+    },
+    "files": [
+      "constants.php",
+      "functions.php"
+    ]
   },
-  "files": [
-    "constants.php",
-    "functions.php"
-  ],
   "config": {
     "process-timeout": 1800,
     "optimize-autoloader": true,
