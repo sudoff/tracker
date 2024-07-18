@@ -118,7 +118,7 @@ namespace Tracker {
     }
 
     /**
-     * @param array<string, float|int|string> $arguments
+     * @param array<string, string> $arguments
      * @return void
      */
     function setRemoteConfig(array $arguments): void
