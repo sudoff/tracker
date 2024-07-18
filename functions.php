@@ -34,6 +34,17 @@ function alert(...$messages): void
     }
 }
 
+
+function isGetMethod(): bool
+{
+    return $_SERVER['REQUEST_METHOD'] === 'GET';
+}
+
+function isPostMethod(): bool
+{
+    return $_SERVER['REQUEST_METHOD'] === 'POST';
+}
+
 function writeFile(string $filename, string $content, int $flag = 0): bool
 {
     return file_put_contents($filename, $content, $flag) !== false;
